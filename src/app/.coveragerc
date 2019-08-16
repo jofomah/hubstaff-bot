@@ -1,0 +1,4 @@
+[report]
+omit =
+    *hubstaff/tests/*
+    *__init__.py*

@@ -1,0 +1,29 @@
+version: "3"
+
+services:
+  app:
+    build:
+      context: .
+    image: "hubstaff"
+    working_dir: /app
+    volumes:
+      - ./src/app:/app
+    ports:
+      - "5000:5000"
+    environment:
+      ADMIN_EMAIL: ${ADMIN_EMAIL}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+      FLASK_ENV: ${FLASK_ENV}
+      HUBSTAFF_APP_TOKEN: ${HUBSTAFF_APP_TOKEN}
+      HUBSTAFF_API_ACCOUNT_EMAIL: ${HUBSTAFF_API_ACCOUNT_EMAIL}
+      HUBSTAFF_API_ACCOUNT_PASSWORD: ${HUBSTAFF_API_ACCOUNT_PASSWORD}
+      HUBSTAFF_ORGANIZATION_ID: ${HUBSTAFF_ORGANIZATION_ID}
+      HUBSTAFF_AUTH_TOKEN: ${HUBSTAFF_AUTH_TOKEN}
+      SECRET_KEY: ${APP_SECRET_KEY}
+    command: start_dev
+    networks:
+      - hubstaff_net
+    env_file: .env
+
+networks:
+  hubstaff_net:
